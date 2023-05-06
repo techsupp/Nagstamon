@@ -202,7 +202,7 @@ jobs:
       # copy *.rpm files into nagstamon-jekyll
       - run: ls -lR artifact && for noarch_rpm in artifact/*.noarch.rpm; do version=$(echo ${noarch_rpm} | python3 -c "file=input(); print(file.split('fedora')[1].split('-')[0])"); mkdir -p mkdir -p ${{ env.repo_dir }}/fedora/${version}; cp -r artifact/*.fedora${version}* ${{ env.repo_dir }}/fedora/${version}; docker run --rm -v $PWD/${{ env.repo_dir }}/fedora/${version}:/repo fedora /bin/sh -c "dnf -y install createrepo_c && createrepo /repo"; done
       # create rpm repo via Fedora container
-      - run: docker run --rm -v $PWD/${{ env.repo_dir }}/${{ env.family }}/latest:/repo fedora /bin/sh -c "dnf -y install createrepo_c && ls -lR /repo && createrepo /repo"
+      - run: docker run --rm -v $PWD/${{ env.repo_dir }}/${{ env.family }}/latest:/repo ${{ env.cr_image }}-fedora-${version} /bin/sh -c "ls -lR /repo && createrepo /repo"
       # commit and push new binaries to nagstamon-repo
       - run: git config --global user.email "repo@nagstamon.de" && git config --global user.name "Nagstamon Repository"
     #  - run: cd ${{ env.repo_dir }} && git pull && git add . && git commit -am "new latest repo ${{ env.family }}" && git push
