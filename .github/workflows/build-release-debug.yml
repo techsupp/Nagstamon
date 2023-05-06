@@ -8,6 +8,7 @@ env:
   repo_dir: nagstamon-jekyll/docs/repo
   cr_image: ghcr.io/henriwahl/build-nagstamon
 
+jobs:
   debian:
     runs-on: ubuntu-latest
     #needs: test
