@@ -1,7 +1,7 @@
 name: build-release-stable
-on:
-  push:
-    tags: 'v*'
+#on:
+#  push:
+#    tags: 'v*'
 
 env:
   python_win_version: 3.11.3
@@ -269,7 +269,7 @@ jobs:
   repo-debian:
     runs-on: ubuntu-latest
     # try to avoid race condition and start uploading only after the last install package has been build
-    needs: [debian, fedora-35, fedora-36, fedora-37, fedora-38, rhel-9, macos, windows-32, windows-64, windows-64-debug]
+    needs: [debian, fedora-35, fedora-36, fedora-37, fedora-38, rhel-9]
     env:
       family: debian
       release: stable
@@ -304,7 +304,7 @@ jobs:
                       gpg --output key.gpg --armor --export"
       # commit and push new binaries to nagstamon-jekyll
       - run: git config --global user.email "repo@nagstamon.de" && git config --global user.name "Nagstamon Repository"
-      - run: cd ${{ env.repo_dir }} && git add . && git commit -am "new ${{ env.release }} repo ${{ env.family }}" && git push
+      #- run: cd ${{ env.repo_dir }} && git add . && git commit -am "new ${{ env.release }} repo ${{ env.family }}" && git push
 
   repo-rpm-fedora:
     runs-on: ubuntu-latest
@@ -324,7 +324,7 @@ jobs:
       - run: git clone git@github.com:HenriWahl/nagstamon-jekyll.git
       - run: rm -rf ${{ env.repo_dir }}/${{ env.family }}/??
       # copy *.rpm files into nagstamon-jekyll
-      - run: for noarch_rpm in artifact/*.noarch.rpm; do version=$(echo ${noarch_rpm} | python3 -c "file=input(); print(file.split('fedora')[1].split('-')[0])"); mkdir -p mkdir -p ${{ env.repo_dir }}/fedora/${version}; cp -r artifact/*.fedora${version}-*.rpm ${{ env.repo_dir }}/fedora/${version}; docker run --rm -v $PWD/${{ env.repo_dir }}/fedora/${version}:/repo fedora /bin/sh -c "dnf -y install createrepo_c && createrepo /repo"; done
+      - run: ls -lR artifact && for noarch_rpm in artifact/*.noarch.rpm; do version=$(echo ${noarch_rpm} | python3 -c "file=input(); print(file.split('fedora')[1].split('-')[0])"); mkdir -p mkdir -p ${{ env.repo_dir }}/fedora/${version}; cp -r artifact/*.fedora${version}-*.rpm ${{ env.repo_dir }}/fedora/${version}; docker run --rm -v $PWD/${{ env.repo_dir }}/fedora/${version}:/repo fedora /bin/sh -c "dnf -y install createrepo_c && createrepo /repo"; done
       # create rpm repo via Fedora container
       - run: docker run --rm -v $PWD/${{ env.repo_dir }}/${{ env.family }}/latest:/repo fedora /bin/sh -c "dnf -y install createrepo_c && createrepo /repo"
       # commit and push new binaries to nagstamon-repo
