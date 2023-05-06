@@ -1,6 +1,6 @@
 name: build-release-stable
-#on:
-#  push:
+on:
+  push:
 #    tags: 'v*'
 
 env:
@@ -41,7 +41,7 @@ jobs:
 
   debian:
     runs-on: ubuntu-latest
-    needs: test
+    #needs: test
     steps:
       - uses: actions/checkout@v3
       # docker login is needed for pushing the build image
@@ -63,7 +63,7 @@ jobs:
 
   fedora-35:
     runs-on: ubuntu-latest
-    needs: test
+    #needs: test
     steps:
       - uses: actions/checkout@v3
       # docker login is needed for pushing the build image
@@ -85,7 +85,7 @@ jobs:
 
   fedora-36:
     runs-on: ubuntu-latest
-    needs: test
+    #needs: test
     steps:
       - uses: actions/checkout@v3
       # docker login is needed for pushing the build image
@@ -107,7 +107,7 @@ jobs:
 
   fedora-37:
     runs-on: ubuntu-latest
-    needs: test
+    #needs: test
     steps:
       - uses: actions/checkout@v3
       # docker login is needed for pushing the build image
@@ -129,7 +129,7 @@ jobs:
 
   fedora-38:
     runs-on: ubuntu-latest
-    needs: test
+    #needs: test
     steps:
       - uses: actions/checkout@v3
       # docker login is needed for pushing the build image
@@ -151,7 +151,7 @@ jobs:
 
   rhel-9:
     runs-on: ubuntu-latest
-    needs: test
+    #needs: test
     steps:
       - uses: actions/checkout@v3
       # docker login is needed for pushing the build image
