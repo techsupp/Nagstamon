@@ -215,7 +215,7 @@ jobs:
             do \
               echo "'${noarch_rpm}'";
           done &&
-          for noarch_rpm in artifact/*.noarch.rpm; \
+          for noarch_rpm in artifact/*${{ env.family }}*.noarch.rpm; \
             do \
               version=$(echo ${noarch_rpm} | python3 -c "file=input(); print(file.split('${{ env.family }}')[1].split('.')[0])") && \
               mkdir -p mkdir -p ${{ env.repo_dir }}/${{ env.family }}/${version} && \
