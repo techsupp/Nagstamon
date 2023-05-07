@@ -151,7 +151,8 @@ jobs:
   repo-debian:
     runs-on: ubuntu-latest
     # try to avoid race condition and start uploading only after the last install package has been build
-    needs: [debian, fedora-35, fedora-36, fedora-37, fedora-38, rhel-9]
+    #needs: [debian, fedora-35, fedora-36, fedora-37, fedora-38, rhel-9]
+    needs: [repo-rpm-fedora]
     env:
       family: debian
       release: stable
@@ -192,7 +193,7 @@ jobs:
     runs-on: ubuntu-latest
     # if not all are ready there might be trouble when downloading artifacts
     # maybe faster now with build containers
-    needs: [repo-debian]
+    needs: [ debian, fedora-35, fedora-36, fedora-37, fedora-38, rhel-9 ]
     env:
       family: fedora
     steps:
