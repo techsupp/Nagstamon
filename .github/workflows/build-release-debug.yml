@@ -21,8 +21,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       # if image defined by hash over requirements is not pullable aka does not exist it will be created and pushed
-      #- run: docker pull ${{ env.cr_image }}-${{ github.job }} || /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
-      - run: /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
+      - run: docker pull ${{ env.cr_image }}-${{ github.job }} || /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
+      #- run: /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
       - run: docker push ${{ env.cr_image }}-${{ github.job }}
       # building in precompiled image makes them way faster instead of creating the build environment every time from scratch
       - run: /usr/bin/docker run -v ${{ github.workspace }}:/nagstamon -e DEB_BUILD_OPTIONS=nocheck ${{ env.cr_image }}-${{ github.job }}
@@ -44,8 +44,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       # if image defined by hash over requirements is not pullable aka does not exist it will be created and pushed
-      #- run: docker pull ${{ env.cr_image }}-${{ github.job }} || /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
-      - run: /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
+      - run: docker pull ${{ env.cr_image }}-${{ github.job }} || /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
+      #- run: /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
       - run: docker push ${{ env.cr_image }}-${{ github.job }}
       # building in precompiled image makes them way faster instead of creating the build environment every time from scratch
       - run: /usr/bin/docker run -v ${{ github.workspace }}:/nagstamon ${{ env.cr_image }}-${{ github.job }}
@@ -67,8 +67,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       # if image defined by hash over requirements is not pullable aka does not exist it will be created and pushed
-      #- run: docker pull ${{ env.cr_image }}-${{ github.job }} || /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
-      - run: /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
+      - run: docker pull ${{ env.cr_image }}-${{ github.job }} || /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
+      #- run: /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
       - run: docker push ${{ env.cr_image }}-${{ github.job }}
       # building in precompiled image makes them way faster instead of creating the build environment every time from scratch
       - run: /usr/bin/docker run -v ${{ github.workspace }}:/nagstamon ${{ env.cr_image }}-${{ github.job }}
@@ -90,8 +90,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       # if image defined by hash over requirements is not pullable aka does not exist it will be created and pushed
-      #- run: docker pull ${{ env.cr_image }}-${{ github.job }} || /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
-      - run: /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
+      - run: docker pull ${{ env.cr_image }}-${{ github.job }} || /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
+      #- run: /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
       - run: docker push ${{ env.cr_image }}-${{ github.job }}
       # building in precompiled image makes them way faster instead of creating the build environment every time from scratch
       - run: /usr/bin/docker run -v ${{ github.workspace }}:/nagstamon ${{ env.cr_image }}-${{ github.job }}
@@ -113,8 +113,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       # if image defined by hash over requirements is not pullable aka does not exist it will be created and pushed
-      #- run: docker pull ${{ env.cr_image }}-${{ github.job }} || /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
-      - run: /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
+      - run: docker pull ${{ env.cr_image }}-${{ github.job }} || /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
+      #- run: /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
       - run: docker push ${{ env.cr_image }}-${{ github.job }}
       # building in precompiled image makes them way faster instead of creating the build environment every time from scratch
       - run: /usr/bin/docker run -v ${{ github.workspace }}:/nagstamon ${{ env.cr_image }}-${{ github.job }}
@@ -136,8 +136,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       # if image defined by hash over requirements is not pullable aka does not exist it will be created and pushed
-      #- run: docker pull ${{ env.cr_image }}-${{ github.job }} || /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
-      - run: /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
+      - run: docker pull ${{ env.cr_image }}-${{ github.job }} || /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
+      #- run: /usr/bin/docker build -t ${{ env.cr_image }}-${{ github.job }} -f build/docker/Dockerfile-${{ github.job }} .
       - run: docker push ${{ env.cr_image }}-${{ github.job }}
       # building in precompiled image makes them way faster instead of creating the build environment every time from scratch
       - run: /usr/bin/docker run -v ${{ github.workspace }}:/nagstamon ${{ env.cr_image }}-${{ github.job }}
@@ -207,6 +207,7 @@ jobs:
       - run: rm -rf ${{ env.repo_dir }}/${{ env.family }}/??
       # copy *.rpm files into nagstamon-jekyll
       - run: ls -lR artifact && for noarch_rpm in artifact/*.noarch.rpm; do version=$(echo ${noarch_rpm} | python3 -c "file=input(); print(file.split('fedora')[1].split('.')[0])"); mkdir -p mkdir -p ${{ env.repo_dir }}/fedora/${version}; cp -r artifact/*.fedora${version}* ${{ env.repo_dir }}/fedora/${version}; docker run --rm -v $PWD/${{ env.repo_dir }}/fedora/${version}:/repo ${{ env.cr_image }}-fedora-${version} /bin/bash -c "ls -lR /repo && createrepo /repo"; done
+      - run: echo "DEBUG"
       # create rpm repo via Fedora container
 #      - run: docker run --rm -v $PWD/${{ env.repo_dir }}/${{ env.family }}/latest:/repo ${{ env.cr_image }}-fedora-${version} /bin/bash -c "ls -lR /repo && /usr/bin/createrepo /repo"
 #       commit and push new binaries to nagstamon-repo
