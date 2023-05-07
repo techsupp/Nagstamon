@@ -210,7 +210,7 @@ jobs:
       - run: rm -rf ${{ env.repo_dir }}/${{ env.family }}/??
       # copy *.rpm files into nagstamon-jekyll
       - run: |
-          ls -lR artifact && \
+          ls -lR artifact/*.noarch.rpm && \
           for noarch_rpm in artifact/*.noarch.rpm; \
             do \
               version=$(echo ${noarch_rpm} | python3 -c "file=input(); print(file.split('${{ env.family }}')[1].split('.')[0])") && \
