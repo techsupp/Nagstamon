@@ -217,10 +217,10 @@ jobs:
               mkdir -p mkdir -p ${{ env.repo_dir }}/${{ env.family }}/${version} && \
               cp -r artifact/*.${{ env.family }}${version}* ${{ env.repo_dir }}/${{ env.family }}/${version} && \
               echo "DEEEBBBUUGGG---->${noarch_rpm} ${version}" && \
-              docker run --rm -v $PWD/${{ env.repo_dir }}/${{ env.family }}/${version}:/repo \
+              docker run --rm -v ${PWD}/${{ env.repo_dir }}/${{ env.family }}/${version}:/repo \
                 ${{ env.cr_image }}-${{ env.family }}-${version} \
                 /bin/bash -c "createrepo --verbose --workers 1 /repo" && \
-              ls -laR $PWD/${{ env.repo_dir }}/${{ env.family }}/${version} && \
+              ls -l -R -a ${PWD}/${{ env.repo_dir }}/${{ env.family }}/${version} && \
             done
       - run: echo "DEBUG"
       # create rpm repo via Fedora container
