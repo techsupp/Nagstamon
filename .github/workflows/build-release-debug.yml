@@ -213,14 +213,14 @@ jobs:
           ls -lR artifact && \
           for noarch_rpm in artifact/*.noarch.rpm; \
             do \
-              version=$(echo ${noarch_rpm} | python3 -c "file=input(); print(file.split('${{ env.family }}')[1].split('.')[0])"); \
-              mkdir -p mkdir -p ${{ env.repo_dir }}/${{ env.family }}/${version}; \
-              cp -r artifact/*.${{ env.family }}${version}* ${{ env.repo_dir }}/${{ env.family }}/${version}; \
-              echo "DEEEBBBUUGGG---->${noarch_rpm} ${version}" \
+              version=$(echo ${noarch_rpm} | python3 -c "file=input(); print(file.split('${{ env.family }}')[1].split('.')[0])") && \
+              mkdir -p mkdir -p ${{ env.repo_dir }}/${{ env.family }}/${version} && \
+              cp -r artifact/*.${{ env.family }}${version}* ${{ env.repo_dir }}/${{ env.family }}/${version} && \
+              echo "DEEEBBBUUGGG---->${noarch_rpm} ${version}" && \
               docker run --rm -v $PWD/${{ env.repo_dir }}/${{ env.family }}/${version}:/repo \
                 ${{ env.cr_image }}-${{ env.family }}-${version} \
-                /bin/bash -c "createrepo --verbose --workers 1 /repo"; \
-              ls -lR $PWD/${{ env.repo_dir }}/${{ env.family }}/${version}; \
+                /bin/bash -c "createrepo --verbose --workers 1 /repo" && \
+              ls -lR $PWD/${{ env.repo_dir }}/${{ env.family }}/${version} && \
             done
       - run: echo "DEBUG"
       # create rpm repo via Fedora container
